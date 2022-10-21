@@ -33,3 +33,50 @@ exports.find = function (req, res) {
     res.json(empleados);
   });
 };
+
+exports.findOne = function (req, res) {
+  Empleado.findOne({ _id: req.params.id }, function (err, empleado) {
+    res.json(empleado);
+  });
+};
+
+exports.update = function (req, res) {
+  let empleado = {
+    nombre: req.body.nombre,
+    apellido_p: req.body.apellido_p,
+    apellido_m: req.body.apellido_m,
+    telefono: req.body.telefono,
+    email: req.body.email,
+    direccion: req.body.direccion,
+  };
+
+  Empleado.findByIdAndUpdate(req.params.id, { $set: empleado }, function (err) {
+    if (err) {
+      console.error(err),
+        (response.exito = false),
+        (response.msg = "Error al modificar el empleado");
+      res.json(response);
+      return;
+    }
+
+    (response.exito = true),
+      (response.msg = "El empleado se modifico correctamente");
+    res.json(response);
+  });
+};
+
+exports.remove = function (req, res) {
+  Empleado.findByIdAndRemove({ _id: req.params.id }, function (err) {
+    if (err) {
+      console.error(err),
+        (response.exito = false),
+        (response.msg = "Error al eliminbar el empleado");
+      res.json(response);
+      return;
+    }
+
+    (response.exito = true),
+      (response.msg = "El empleado se elimino correctamente");
+    res.json(response);
+  });
+};

@@ -18,7 +18,7 @@ exports.create = function (req, res) {
     if (err) {
       console.error(err),
         (response.exit = false),
-        (response.msg = "Error al guardar el empledo");
+        (response.msg = "Error al guardar el empleado");
       res.json(response);
       return;
     }
@@ -70,7 +70,7 @@ exports.remove = function (req, res) {
     if (err) {
       console.error(err),
         (response.exito = false),
-        (response.msg = "Error al eliminbar el empleado");
+        (response.msg = "Error al eliminar el empleado");
       res.json(response);
       return;
     }

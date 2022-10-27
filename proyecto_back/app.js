@@ -1,46 +1,47 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var createError = require("http-errors");
+var express = require("express");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
 var database = require("./config/database");
+var auth = require("./auth/main_auth");
 
 //eliminamos los dos archivos js que eliminamos
-var empleadosRouter = require('./routes/empleados.router');
-var cacaosRouter = require('./routes/cacaos.router');
+var empleadosRouter = require("./routes/empleados.router");
+var cacaosRouter = require("./routes/cacaos.router");
 
 var app = express();
 
-
-
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 //mongo connect
 database.mongoConnect();
+
+app.use(auth);
+
 //Routers
 
-app.use('/empleados', empleadosRouter);
-app.use('/cacaos', cacaosRouter);
-
+app.use("/empleados", empleadosRouter);
+app.use("/cacaos", cacaosRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render("error");
 });
 
 module.exports = app;

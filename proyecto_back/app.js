@@ -5,8 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var database = require("./config/database");
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//eliminamos los dos archivos js que eliminamos
 var empleadosRouter = require('./routes/empleados.router');
 var cacaosRouter = require('./routes/cacaos.router');
 
@@ -23,8 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //mongo connect
 database.mongoConnect();
 //Routers
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
 app.use('/empleados', empleadosRouter);
 app.use('/cacaos', cacaosRouter);
 

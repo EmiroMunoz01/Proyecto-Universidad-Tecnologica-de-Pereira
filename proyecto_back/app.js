@@ -6,7 +6,6 @@ var logger = require("morgan");
 var database = require("./config/database");
 var auth = require("./auth/main_auth");
 
-//eliminamos los dos archivos js que eliminamos
 var empleadosRouter = require("./routes/empleados.router");
 var cacaosRouter = require("./routes/cacaos.router");
 var usuariosRouter = require("./routes/usuarios.router");
@@ -22,9 +21,9 @@ app.use(express.static(path.join(__dirname, "public")));
 //mongo connect
 database.mongoConnect();
 app.use("/usuarios", usuariosRouter);
+app.use(auth);
 
 //Routers
-app.use(auth);
 app.use("/empleados", empleadosRouter);
 app.use("/cacaos", cacaosRouter);
 

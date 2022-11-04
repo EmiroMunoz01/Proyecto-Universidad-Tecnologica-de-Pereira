@@ -1,14 +1,21 @@
 import React from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
+import "./login.css";
 
 export default class login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      usuario: "",
+      pass: "",
+    };
+  }
+  iniciarSesion() {
+    alert(`usuario: ${this.state.usuario} - password: ${this.state.pass}`);
   }
   render() {
     return (
-      <Container id="login-container" style={{ marginTop: 200 }}>
+      <Container id="login-container">
         <Row>
           <Col>
             <Row>
@@ -25,22 +32,27 @@ export default class login extends React.Component {
               >
                 <Form>
                   <Form.Group>
-                    <Form.Label style={{ float: "left" }}>Usuario</Form.Label>
-                    <Form.Control type="email" />
+                    <Form.Label>Usuario</Form.Label>
+                    <Form.Control
+                      onChange={(e) =>
+                        this.setState({ usuario: e.target.value })
+                      }
+                    />
                   </Form.Group>
 
                   <Form.Group>
-                    <Form.Label style={{ float: "left" }}>
-                      Contraseña
-                    </Form.Label>
-                    <Form.Control type="password" />
+                    <Form.Label>Contraseña</Form.Label>
+                    <Form.Control
+                      type="password"
+                      onChange={(e) => this.setState({ pass: e.target.value })}
+                    />
                   </Form.Group>
-                  <Form.Group>
-                    <Form.Check type="checkbox" label="Check me out" />
-                  </Form.Group>
+
                   <Button
                     variant="primary"
-                    style={{ marginTop: 20, width: "100%" }}
+                    onClick={() => {
+                      this.iniciarSesion();
+                    }}
                   >
                     Iniciar Sesión
                   </Button>

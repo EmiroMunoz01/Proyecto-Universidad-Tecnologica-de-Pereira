@@ -6,11 +6,10 @@ import {
   DropdownButton,
   Dropdown,
   Row,
-  Col,
 } from "react-bootstrap";
+import "./navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import "./navbar.css";
 
 export default class menu extends React.Component {
   constructor(props) {
@@ -19,7 +18,7 @@ export default class menu extends React.Component {
   }
   render() {
     return (
-      <Navbar id="navbar" bg="primary" variant="dark">
+      <Navbar fixed="top" id="navbar" bg="primary" expand="lg" variant="dark">
         <Container>
           <Navbar.Brand href="#home">
             Cacao del Sur<span id="usuario-sub-branm"></span>
@@ -32,7 +31,7 @@ export default class menu extends React.Component {
             </Nav>
 
             <DropdownButton id="dropdown-basic-button" title="Usuario">
-              <Dropdown.Header>
+              <Dropdown.Header id="dropdown-header">
                 <Row>
                   <FontAwesomeIcon icon={faUserCircle} />
                 </Row>

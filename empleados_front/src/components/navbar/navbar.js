@@ -9,33 +9,33 @@ import {
 } from "react-bootstrap";
 import "./navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 
 export default class menu extends React.Component {
   constructor(props) {
     super(props);
-    this.states = {};
+    this.state = {};
   }
+
   render() {
     return (
-      <Navbar fixed="top" id="navbar" bg="primary" expand="lg" variant="dark">
+      <Navbar fixed="top" bg="primary" variant="dark" expand="lg" id="navbar">
         <Container>
-          <Navbar.Brand href="#home">
-            Cacao del Sur<span id="usuario-sub-branm"></span>
-          </Navbar.Brand>
+          <Navbar.Brand href="#home">Cacao Del Sur</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              {/* <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link> */}
+              <Nav.Link href="#home">Catalogo</Nav.Link>
+              <Nav.Link href="#link">Cacao</Nav.Link>
             </Nav>
-
             <DropdownButton id="dropdown-basic-button" title="Usuario">
-              <Dropdown.Header id="dropdown-header">
+              <Dropdown.Header>
                 <Row>
-                  <FontAwesomeIcon icon={faUserCircle} />
+                  <FontAwesomeIcon icon={faUserAstronaut} />
                 </Row>
-                <Row>#USUARIO#</Row>
+                <Row>
+                #USUARIO#
+                </Row>
               </Dropdown.Header>
               <Dropdown.Divider />
               <Dropdown.Item href="#/action-1">Cerrar sesión</Dropdown.Item>
